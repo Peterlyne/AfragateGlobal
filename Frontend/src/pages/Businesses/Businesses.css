@@ -1,0 +1,93 @@
+/*Businesses styles*/
+.businesses{
+    max-width:1200px;
+    margin:auto;
+    padding:80px 20px;
+}
+
+.business-header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.business-header h1{
+    font-size:42px;
+    color:#0f6b46;
+}
+
+.business-header p{
+    color:#666;
+    margin-top:15px;
+}
+
+.business-search{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+.business-search input{
+    width:400px;
+    max-width:100%;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.business-search button{
+    padding:15px 30px;
+    background:#0f6b46;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.business-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.business-card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.business-card:hover{
+    transform:translateY(-5px);
+}
+
+.business-card h2{
+    color:#0f6b46;
+    margin-bottom:10px;
+}
+
+.business-card h4{
+    color:#444;
+    margin-bottom:10px;
+}
+
+.business-card p{
+    color:#666;
+    margin-bottom:20px;
+}
+
+.business-card button{
+    width:100%;
+    padding:12px;
+    background:#0f6b46;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.business-card button:hover{
+    background:#0b8f57;
+}

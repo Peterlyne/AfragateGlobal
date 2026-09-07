@@ -1,0 +1,41 @@
+const mongoose=require("mongoose");
+const userSchema=new mongoose.Schema(
+    {
+        FullName:{
+            type:String,
+            required:true,
+        },
+        email:{
+            type:String,
+            required:true,
+            unique:true,
+            lowercase:true,
+            trim:true,
+
+        },
+        password:{
+            type:String,
+            required:true,
+        },
+        accountType:{
+            type:String,
+            enum:["B2B","B2C","B2G"],
+            required:true,
+        },
+        country:{
+            type:String,
+            required:true,
+        },
+        phone:{
+            type:String,
+        },
+        isVerified:{
+            type:Boolean,
+            default:false,
+        },
+    },
+    {
+        timestamps:true,
+    }
+);
+module.exports=mongoose.model("User",userSchema);
