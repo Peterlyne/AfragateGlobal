@@ -15,7 +15,7 @@ function Dashboard() {
         const token = localStorage.getItem("token");
 
         if (!token) {
-          setError("Authentication required.");
+          setError("You are not logged in.");
           setLoading(false);
           return;
         }
@@ -28,9 +28,11 @@ function Dashboard() {
 
         setUser(response.data.user);
       } catch (error) {
+        console.error("Failed to fetch profile:", error);
+
         setError(
           error.response?.data?.message ||
-          "Unable to load your profile."
+            "Unable to load your profile."
         );
       } finally {
         setLoading(false);
@@ -44,7 +46,7 @@ function Dashboard() {
     return (
       <Layout>
         <div className="dashboard">
-          <p>Loading dashboard...</p>
+          <h2>Loading dashboard...</h2>
         </div>
       </Layout>
     );
@@ -54,8 +56,10 @@ function Dashboard() {
     return (
       <Layout>
         <div className="dashboard">
-          <h1>Dashboard</h1>
-          <p>{error}</p>
+          <div className="dashboard-error">
+            <h2>Something went wrong</h2>
+            <p>{error}</p>
+          </div>
         </div>
       </Layout>
     );
@@ -64,44 +68,42 @@ function Dashboard() {
   return (
     <Layout>
       <div className="dashboard">
+        <div className="dashboard-welcome">
+          <h1>Welcome, {user?.FullName}</h1>
 
-        <h1>Welcome, {user?.FullName}</h1>
-
-        <p>
-          Your gateway to jobs, scholarships, internships and
-          business opportunities across Africa.
-        </p>
+          <p>
+            Your gateway to jobs, scholarships, internships,
+            businesses and opportunities across Africa.
+          </p>
+        </div>
 
         <div className="cards">
-
-          <StatCard
+          <StartCard
             title="Jobs"
             value="245"
             description="Available opportunities"
           />
 
-          <StatCard
+          <StartCard
             title="Scholarships"
             value="89"
             description="Open scholarships"
           />
 
-          <StatCard
+          <StartCard
             title="Internships"
             value="57"
             description="Internship programmes"
           />
 
-          <StatCard
+          <StartCard
             title="Businesses"
             value="420"
             description="Registered businesses"
           />
-
         </div>
 
         <div className="recent-section">
-
           <div className="recent-card">
             <h2>Latest Opportunities</h2>
 
@@ -117,15 +119,34 @@ function Dashboard() {
             <h2>Announcements</h2>
 
             <ul>
-              <li>New Scholarships Added</li>
-              <li>Business Directory Updated</li>
-              <li>NGO Volunteer Programme Open</li>
-              <li>Upcoming Events</li>
+              <li>New scholarships added</li>
+              <li>Business directory updated</li>
+              <li>NGO volunteer programme open</li>
+              <li>Upcoming technology events</li>
             </ul>
           </div>
-
         </div>
 
+        <div className="account-card">
+          <h2>Your Account</h2>
+
+          <div className="account-details">
+            <div>
+              <span>Name</span>
+              <strong>{user?.FullName}</strong>
+            </div>
+
+            <div>
+              <span>Email</span>
+              <strong>{user?.email}</strong>
+            </div>
+
+            <div>
+              <span>Account Type</span>
+              <strong>{user?.accountType}</strong>
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );
